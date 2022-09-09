@@ -33,7 +33,49 @@ function timer() {
     var end = new Date().getTime();
 
     return end - start;
-  }
+}
 
 
 console.log(timer());
+
+class Date {
+
+    days = {
+        1: 31,
+        2: year%4 === 0 ? 29 : 28,
+        3: 31,
+        4: 30,
+        5: 31,
+        6: 30,
+        7: 31,
+        8: 31,
+        9: 30,
+        10: 31,
+        11: 30,
+        12: 31,
+    }
+
+    constructor(year, month, day, hours, minutes, seconds, milliseconds) {
+
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.days = days[month];
+        this.hours = hours;
+        this.minutes = minutes;
+        this.seconds = seconds;
+        this.milliseconds = milliseconds;
+    }
+
+    getTime() {
+        let time = this.milliseconds;
+        time += this.seconds*1000;
+        time += this.minutes*60000;
+        time += this.hours*3600000;
+        time += this.day*24*3600000;
+        for (i = 1; i <= this.month; i++) {
+            time += days[i]*24*3600000;
+        }
+        time += year*31557600000;
+    }
+}
