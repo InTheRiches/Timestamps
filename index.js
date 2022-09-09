@@ -11,7 +11,7 @@ function createTimestamp(date, hourTime) {
     }
     
     if (now.getTime() - date.getTime() <= 86400000 && now.getTime() - date.getTime() >= 0) {
-        const hoursAgo = now.getHours() - date.getHours();
+        let hoursAgo = now.getHours() - date.getHours();
 
         if(date.getHours() > 12 && !hourTime) hoursAgo -= 12;
 
@@ -28,9 +28,10 @@ function createTimestamp(date, hourTime) {
 function timer() {
     var start = new Date().getTime();
   
-    createTimestamp(new Date(2021, 8, 8, 10, 5, 0, 0), true);
+    console.log(createTimestamp(new Date(2021, 8, 8, 10, 5, 0, 0), true));
   
     var end = new Date().getTime();
+
     return end - start;
   }
 
