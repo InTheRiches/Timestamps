@@ -12,7 +12,9 @@ function createTimestamp(date, hourTime) {
     
     if (now.getTime() - date.getTime() <= 86400000 && now.getTime() - date.getTime() >= 0) {
         const hoursAgo = now.getHours() - date.getHours();
+
         if(date.getHours() > 12 && !hourTime) hoursAgo -= 12;
+
         return hoursAgo === 1 ? hoursAgo + " hour ago." : "Today at " + date.getHours() + ":" + (date.getMinutes > 9 ? date.getMinutes() : "0" + date.getMinutes());
     }
     
@@ -23,4 +25,14 @@ function createTimestamp(date, hourTime) {
     return date.getMonth() + "/" + date.getDay() + "/" + (1900 + date.getYear());
 }
 
-console.log(createTimestamp(new Date(2021, 8, 8, 10, 5, 0, 0), true));
+function timer() {
+    var start = new Date().getTime();
+  
+    createTimestamp(new Date(2021, 8, 8, 10, 5, 0, 0), true);
+  
+    var end = new Date().getTime();
+    return end - start;
+  }
+
+
+console.log(timer());
