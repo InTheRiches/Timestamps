@@ -38,29 +38,29 @@ function timer() {
 
 console.log(timer());
 
-class Date {
+console.log(new Date(2021, 8, 8, 10, 5, 0, 0).getTime());
 
-    days = {
-        1: 31,
-        2: year%4 === 0 ? 29 : 28,
-        3: 31,
-        4: 30,
-        5: 31,
-        6: 30,
-        7: 31,
-        8: 31,
-        9: 30,
-        10: 31,
-        11: 30,
-        12: 31,
-    }
+class NewDate {
 
     constructor(year, month, day, hours, minutes, seconds, milliseconds) {
-
+        this.daysList = {
+            1: 31,
+            2: year%4 === 0 ? 29 : 28,
+            3: 31,
+            4: 30,
+            5: 31,
+            6: 30,
+            7: 31,
+            8: 31,
+            9: 30,
+            10: 31,
+            11: 30,
+            12: 31,
+        }   
         this.year = year;
         this.month = month;
         this.day = day;
-        this.days = days[month];
+        this.days = this.daysList[month];
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
@@ -73,9 +73,13 @@ class Date {
         time += this.minutes*60000;
         time += this.hours*3600000;
         time += this.day*24*3600000;
-        for (i = 1; i <= this.month; i++) {
-            time += days[i]*24*3600000;
+        for (let i = 1; i <= this.month; i++) {
+            time += this.daysList[i]*24*3600000;
         }
-        time += year*31557600000;
+        time += this.year*31556952000;
+        
+        return time;
     }
 }
+
+console.log(new NewDate(121, 8, 8, 10, 5, 0, 0).getTime())
